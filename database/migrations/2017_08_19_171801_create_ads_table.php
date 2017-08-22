@@ -16,7 +16,6 @@ class CreateAdsTable extends Migration {
         {
             $table->increments('id');
             $table->string('title');
-            $table->string('slug')->unique();
             $table->text('description');
             $table->string('author_name');
             $table->timestamp('created_at_datetime');

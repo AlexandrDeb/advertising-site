@@ -30,7 +30,6 @@ class AdsSeeder extends Seeder{
         Ad::create([
 
             'title' => 'First Ad',
-            'slug' => 'first-ad',
             'description' => '<b>Descripnion First Ad Body</b>',
             'author_name' => 'Petro',
             'created_at_datetime' => DB::raw('CURRENT_TIMESTAMP'),
@@ -38,7 +37,6 @@ class AdsSeeder extends Seeder{
 
         Ad::create([
             'title' => 'Second Ad',
-            'slug' => 'second-ad',
             'description' => '<b>Descripnion Second Ad Body</b>',
             'author_name' => 'Alexander',
             'created_at_datetime' => DB::raw('CURRENT_TIMESTAMP'),
@@ -46,7 +44,6 @@ class AdsSeeder extends Seeder{
 
         Ad::create([
             'title' => 'Third Ad',
-            'slug' => 'third-ad',
             'description' => '<b>Descripnion Third Ad Body</b>',
             'author_name' => 'Ivan',
             'created_at_datetime' => DB::raw('CURRENT_TIMESTAMP'),

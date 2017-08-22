@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Ad;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
 class AdController extends Controller
 {
@@ -17,8 +18,9 @@ class AdController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Ad $postModels)
+    public function index(Ad $adModels)
     {
+        
         //$ads = Ad::all();
         //$ads = Ad::latest('id')->get();
         //$ads = Ad::latest('created_at_datetime')->get();
@@ -27,7 +29,7 @@ class AdController extends Controller
        ->where('created_at_datetime', '<=', Carbon::now())
        ->get();*/
 
-        $ads = $postModels->getAds();
+        $ads = $adModels->getAds();
         //ad.index (ad -название папкиб index - action)
         return view('ad.index', ['ads' => $ads]);
     }
@@ -48,11 +50,10 @@ class AdController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Ad $postModel, Request $request)
+    public function store(Ad $adModel, Requests\CreateAdRequest $request)
     {
-        $ad= new Ad;
-        $ad = $postModel->create($request->all());
 
+        $ad = $adModel->create($request->all());
 
         $ad->save();
 
@@ -78,7 +79,12 @@ class AdController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ads = Ad::findOrFail($id);
+        //dd($ads);
+        //return view('ad.index', ['ads' => $ads]);
+        return view('ad.edit', compact('ads'));
+
+
     }
 
     /**
@@ -88,9 +94,13 @@ class AdController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( Requests\CreateAdRequest $request, $id)
     {
-        //
+        $ads = Ad::findOrFail($id);
+
+        $ads->update($request->all());
+
+        return redirect()->route('ads')->with('message', 'ad has been updated successfully');
     }
 
     /**
@@ -99,8 +109,11 @@ class AdController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( $id)
     {
-        //
+//dd($id);
+        Ad::destroy($id);
+
+        return redirect()->route('ads')->with('message', 'ad has been deleted successfully');
     }
 }
