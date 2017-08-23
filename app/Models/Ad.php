@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class Ad extends Model
 {
 
-    protected $fillable = ['title', 'description', 'author_name', 'created_at_datetime'];
+    protected $fillable = ['title', 'description', 'user_id', 'author_name', 'created_at_datetime'];
 
     public function getAds()
     {

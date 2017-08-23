@@ -147,6 +147,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
 
+
     ],
 
     /*

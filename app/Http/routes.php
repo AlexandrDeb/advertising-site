@@ -23,5 +23,8 @@ get('ad/{ad}',      ['as' => 'ad.show',   'uses' => 'AdController@show']);
 get('ad/{ad}/edit', ['as' => 'ad.edit',   'uses' => 'AdController@edit']);
 post('ad/{ad}',     ['as' => 'ad.update', 'uses' => 'AdController@update']);*/
 
-
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
 $router->resource('ad', 'AdController');

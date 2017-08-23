@@ -17,9 +17,15 @@ class CreateAdsTable extends Migration {
             $table->increments('id');
             $table->string('title');
             $table->text('description');
+            $table->integer('user_id')->unsigned();
             $table->string('author_name');
             $table->timestamp('created_at_datetime');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->OnDelete('cascade');
         });
     }
 
